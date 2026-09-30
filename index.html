@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuoPlans - Innovando sus Citas</title>
+    <!-- Tailwind CSS por CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Configuración estricta de 3 colores -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4B4B', /* Acento / Coral */
+                        dark: '#222222',    /* Oscuro */
+                        light: '#FAFAFA',   /* Claro */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAFAFA;
+            color: #222222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .btn-primary {
+            background-color: #FF4B4B;
+            color: #FAFAFA;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #FF4B4B;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #FAFAFA;
+            color: #222222;
+            border-color: #222222;
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: #222222;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #222222;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background-color: #222222;
+            color: #FAFAFA;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen selection:bg-primary selection:text-light">
+
+    <!-- ENCABEZADO -->
+    <header class="bg-dark text-light p-4 sticky top-0 z-50 shadow-lg border-b-4 border-primary">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-3 mb-4 md:mb-0">
+                <div class="bg-primary text-light font-black text-2xl p-2 rounded-sm tracking-tighter">DP</div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-wider">DuoPlans</h1>
+                    <p class="text-xs text-primary font-semibold uppercase tracking-widest">Startup de Conexión</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="flex flex-wrap justify-center gap-5 font-semibold text-sm">
+                    <li><a href="#inicio" class="hover:text-primary transition">Inicio</a></li>
+                    <li><a href="#categorias" class="hover:text-primary transition">Categorías</a></li>
+                    <li><a href="#crear-plan" class="hover:text-primary transition">Crear Plan</a></li>
+                    <li><a href="#futuros" class="hover:text-primary transition">Wishlist</a></li>
+                    <li><a href="#invitaciones" class="hover:text-primary transition">Invitaciones</a></li>
+                    <li><a href="#realizados" class="hover:text-primary transition">Historial</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- SECCIÓN DE INICIO -->
+        <section id="inicio" class="py-20 bg-light">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-black text-dark mb-6 leading-tight">
+                            Innovando la forma en que <span class="text-primary">conectan</span>.
+                        </h2>
+                        <p class="text-lg text-dark font-medium leading-relaxed mb-8">
+                            <strong>DuoPlans</strong> nace como una startup visionaria. Nuestro enfoque emprendedor busca resolver el "qué haremos hoy" centralizando presupuesto, horarios e ideas creativas en un solo lugar.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#crear-plan" class="btn-primary">Crear un Plan</a>
+                            <a href="#categorias" class="btn-outline">Explorar</a>
+                        </div>
+                    </div>
+                    <div class="p-4 relative bg-dark border-4 border-dark rounded-xl shadow-[8px_8px_0px_0px_rgba(255,75,75,1)]">
+                        <div class="absolute -top-5 -right-5 bg-primary text-light px-4 py-2 rounded-full border-2 border-dark font-bold transform rotate-12 shadow-md">
+                            ¡El Pitch!
+                        </div>
+                        <video class="aspect-video w-full object-cover border-2 border-light" controls autoplay loop muted>
+                            <source src="gemini_generated_video_ade2e948.mp4" type="video/mp4">
+                        </video>
+                        <div class="text-center mt-4">
+                            <h3 class="text-light font-bold text-xl">Pitch de Proyecto</h3>
+                            <p class="text-light text-sm mt-1 opacity-80">Conoce nuestra visión innovadora</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CATEGORÍAS -->
+        <section id="categorias" class="py-16 bg-light border-t-4 border-dark">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl font-black text-dark mb-8 border-l-8 border-primary pl-4">Descubrir por Categorías</h2>
+                <p class="text-dark font-medium mb-8 max-w-2xl">Da clic en una categoría para filtrar su Wishlist de planes.</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- Cada div ahora tiene un onclick para llamar a la función de filtrar -->
+                    <div onclick="filtrarPlanes('Creatividad')" class="border-4 border-dark bg-dark text-light p-8 flex flex-col items-center justify-center text-center hover:bg-primary hover:border-primary transition-all cursor-pointer group shadow-[4px_4px_0px_0px_rgba(255,75,75,1)] hover:shadow-none hover:translate-y-1 hover:translate-x-1">
+                        <i class="fa-solid fa-palette text-5xl mb-4 text-primary group-hover:text-light transition-colors"></i>
+                        <h3 class="font-bold text-xl uppercase tracking-wider mb-2">Creatividad</h3>
+                    </div>
+
+                    <div onclick="filtrarPlanes('Gastronomía')" class="border-4 border-dark bg-light text-dark p-8 flex flex-col items-center justify-center text-center hover:bg-primary hover:text-light hover:border-primary transition-all cursor-pointer group shadow-[4px_4px_0px_0px_rgba(34,34,34,1)] hover:shadow-none hover:translate-y-1 hover:translate-x-1">
+                        <i class="fa-solid fa-utensils text-5xl mb-4 text-primary group-hover:text-light transition-colors"></i>
+                        <h3 class="font-bold text-xl uppercase tracking-wider mb-2">Gastronomía</h3>
+                    </div>
+
+                    <div onclick="filtrarPlanes('Extrema')" class="border-4 border-dark bg-dark text-light p-8 flex flex-col items-center justify-center text-center hover:bg-primary hover:border-primary transition-all cursor-pointer group shadow-[4px_4px_0px_0px_rgba(255,75,75,1)] hover:shadow-none hover:translate-y-1 hover:translate-x-1">
+                        <i class="fa-solid fa-bolt text-5xl mb-4 text-primary group-hover:text-light transition-colors"></i>
+                        <h3 class="font-bold text-xl uppercase tracking-wider mb-2">Extrema</h3>
+                    </div>
+
+                    <div onclick="filtrarPlanes('Cultura')" class="border-4 border-dark bg-light text-dark p-8 flex flex-col items-center justify-center text-center hover:bg-primary hover:text-light hover:border-primary transition-all cursor-pointer group shadow-[4px_4px_0px_0px_rgba(34,34,34,1)] hover:shadow-none hover:translate-y-1 hover:translate-x-1">
+                        <i class="fa-solid fa-ticket text-5xl mb-4 text-primary group-hover:text-light transition-colors"></i>
+                        <h3 class="font-bold text-xl uppercase tracking-wider mb-2">Cultura</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CREAR PLAN -->
+        <section id="crear-plan" class="py-16 bg-dark text-light border-y-4 border-primary">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-light text-dark p-8 rounded-lg shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-primary"></div>
+                    <h2 class="text-3xl font-black mb-6">Proponer una Idea</h2>
+                    
+                    <form id="planForm" class="grid grid-cols-1 md:grid-cols-2 gap-5 font-medium">
+                        <div class="flex flex-col">
+                            <label class="mb-1 text-sm font-bold uppercase">Nombre del plan</label>
+                            <input type="text" id="nombrePlan" required class="p-3 border-2 border-dark bg-light focus:outline-none focus:border-primary" placeholder="Ej: Clase de pintura">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="mb-1 text-sm font-bold uppercase">Categoría</label>
+                            <select id="temaPlan" class="p-3 border-2 border-dark bg-light focus:outline-none focus:border-primary">
+                                <option value="Creatividad">Creatividad</option>
+                                <option value="Gastronomía">Gastronomía</option>
+                                <option value="Extrema">Extrema</option>
+                                <option value="Cultura">Cultura</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="mb-1 text-sm font-bold uppercase">Ubicación</label>
+                            <input type="text" id="lugarPlan" required class="p-3 border-2 border-dark bg-light focus:outline-none focus:border-primary" placeholder="Lugar o dirección">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="mb-1 text-sm font-bold uppercase">Horario propuesto</label>
+                            <input type="text" id="horaPlan" required class="p-3 border-2 border-dark bg-light focus:outline-none focus:border-primary" placeholder="Ej: Viernes 6:00 PM">
+                        </div>
+                        <div class="flex flex-col md:col-span-2">
+                            <label class="mb-1 text-sm font-bold uppercase">Presupuesto Estimado ($ MXN)</label>
+                            <input type="number" id="costoPlan" required class="p-3 border-2 border-dark bg-light focus:outline-none focus:border-primary" placeholder="Ej: 600">
+                        </div>
+                        <button type="submit" class="md:col-span-2 btn-primary mt-2">
+                            Guardar en Wishlist
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: WISHLIST (Con filtrado dinámico) -->
+        <section id="futuros" class="py-16 max-w-7xl mx-auto px-4 min-h-[500px]">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <!-- Título dinámico que cambiará con JS -->
+                <h2 id="tituloWishlist" class="text-3xl font-black text-dark border-l-8 border-primary pl-4 mb-4 md:mb-0">Nuestra Wishlist</h2>
+                <!-- Botón oculto por defecto para limpiar filtros -->
+                <button id="btnMostrarTodos" onclick="mostrarTodos()" class="btn-outline hidden text-sm py-2 px-4">
+                    <i class="fa-solid fa-rotate-left mr-2"></i>Mostrar Todos
+                </button>
+            </div>
+
+            <div id="contenedorPlanes" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Tarjeta 1: Creatividad -->
+                <div class="tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg" data-categoria="Creatividad">
+                    <div>
+                        <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">Creatividad</span>
+                        <h3 class="text-2xl font-bold mb-4">Taller de Talavera</h3>
+                        <div class="space-y-2 mb-6">
+                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Barrio del Artista</p>
+                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> Sáb 10:00 AM</p>
+                            <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> $800 MXN</p>
+                        </div>
+                    </div>
+                    <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary">Completar Plan</button>
+                </div>
+
+                <!-- Tarjeta 2: Gastronomía -->
+                <div class="tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg" data-categoria="Gastronomía">
+                    <div>
+                        <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">Gastronomía</span>
+                        <h3 class="text-2xl font-bold mb-4">Tour de Antojitos</h3>
+                        <div class="space-y-2 mb-6">
+                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Mercado de Cholula</p>
+                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> Dom 2:00 PM</p>
+                            <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> $400 MXN</p>
+                        </div>
+                    </div>
+                    <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary">Completar Plan</button>
+                </div>
+
+                <!-- Tarjeta 3: Extrema -->
+                <div class="tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg" data-categoria="Extrema">
+                    <div>
+                        <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">Extrema</span>
+                        <h3 class="text-2xl font-bold mb-4">Salto en Paracaídas</h3>
+                        <div class="space-y-2 mb-6">
+                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Aeródromo de Atlixco</p>
+                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> Sáb 8:00 AM</p>
+                            <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> $3500 MXN</p>
+                        </div>
+                    </div>
+                    <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary">Completar Plan</button>
+                </div>
+
+                <!-- Tarjeta 4: Cultura -->
+                <div class="tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg" data-categoria="Cultura">
+                    <div>
+                        <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">Cultura</span>
+                        <h3 class="text-2xl font-bold mb-4">Noche de Museos</h3>
+                        <div class="space-y-2 mb-6">
+                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Centro Histórico</p>
+                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> Vie 6:00 PM</p>
+                            <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> Gratis</p>
+                        </div>
+                    </div>
+                    <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary">Completar Plan</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN: INVITACIONES -->
+        <section id="invitaciones" class="py-16 bg-light border-y-2 border-dark">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl font-black text-dark border-l-8 border-primary pl-4 mb-2">Invitaciones a Citas Dobles</h2>
+                <p class="text-dark font-medium max-w-2xl mb-8">Inviten a sus amigos a una cita de 4 o más personas. Dividan gastos y compartan experiencias increíbles.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="border-4 border-dark p-6 bg-light shadow-[8px_8px_0px_0px_rgba(34,34,34,1)]">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-primary text-light text-xs font-black px-3 py-1 uppercase animate-pulse">Nueva Solicitud</span>
+                            <span class="text-dark font-bold text-sm bg-gray-200 px-2 py-1 rounded">De: Carlos y Ana</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-3">Escape Room de Terror</h3>
+                        <p class="text-sm text-dark mb-1 font-medium">📍 Enigma Rooms, Plaza de la Tecnología</p>
+                        <p class="text-sm text-dark mb-1 font-medium">🕒 Sábado a las 20:00 hrs</p>
+                        <p class="text-sm text-dark mb-6 font-bold text-primary">👥 Plan para 4 - Gasto dividido ($350 c/u)</p>
+                        <div class="flex gap-4">
+                            <button class="flex-1 btn-primary">¡Aceptar!</button>
+                            <button class="flex-1 btn-outline">Rechazar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="border-4 border-primary p-6 bg-dark text-light shadow-[8px_8px_0px_0px_rgba(255,75,75,1)]">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-paper-plane text-primary"></i> Organizar cita grupal</h3>
+                        <form class="flex flex-col gap-4">
+                            <div>
+                                <label class="text-xs uppercase font-bold text-gray-400 mb-1 block">Pareja a invitar (Usuario/Correo)</label>
+                                <input type="text" placeholder="@usuario_amigos" class="w-full p-3 bg-light text-dark border-2 border-dark focus:border-primary focus:outline-none">
+                            </div>
+                            <button type="button" class="w-full bg-primary text-light font-bold py-3 mt-2 border-2 border-primary hover:bg-light hover:text-dark transition">
+                                Enviar Invitación
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-dark text-light p-8 text-center border-t-8 border-primary">
+        <h2 class="text-3xl font-black mb-2 tracking-tighter">DuoPlans</h2>
+        <p class="text-primary font-bold uppercase tracking-widest text-sm mb-6">Emprendimiento Innovador</p>
+        <p class="text-xs opacity-70 mb-2">Proyecto Final Emprendedor - Creado para revolucionar las citas.</p>
+        <p class="text-xs opacity-70">© 2026 Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- LOGICA JAVASCRIPT: FILTRADO Y FORMULARIO -->
+    <script>
+        // FUNCIÓN 1: Filtrar planes por categoría
+        function filtrarPlanes(categoriaSelec) {
+            // Actualizar el título de la sección
+            document.getElementById('tituloWishlist').innerHTML = `Nuestra Wishlist <span class="text-primary text-xl md:text-2xl ml-2">/ ${categoriaSelec}</span>`;
+            // Mostrar botón para quitar filtros
+            document.getElementById('btnMostrarTodos').classList.remove('hidden');
+
+            // Obtener todas las tarjetas (tanto las de ejemplo como las nuevas creadas)
+            const tarjetas = document.querySelectorAll('.tarjeta-plan');
+            let hayResultados = false;
+
+            tarjetas.forEach(tarjeta => {
+                // Verificar qué categoría tiene la tarjeta (usando data-categoria)
+                if (tarjeta.getAttribute('data-categoria') === categoriaSelec) {
+                    tarjeta.style.display = 'flex'; // Mostrar si coincide
+                    hayResultados = true;
+                } else {
+                    tarjeta.style.display = 'none'; // Ocultar si no coincide
+                }
+            });
+
+            // Desplazar la pantalla automáticamente hacia la Wishlist
+            document.getElementById('futuros').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // FUNCIÓN 2: Quitar los filtros y mostrar todos
+        function mostrarTodos() {
+            document.getElementById('tituloWishlist').innerText = 'Nuestra Wishlist';
+            document.getElementById('btnMostrarTodos').classList.add('hidden');
+
+            const tarjetas = document.querySelectorAll('.tarjeta-plan');
+            tarjetas.forEach(tarjeta => {
+                tarjeta.style.display = 'flex'; // Mostrar todas
+            });
+        }
+
+        // FUNCIÓN 3: Agregar nuevos planes desde el formulario
+        document.getElementById('planForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombrePlan').value;
+            const tema = document.getElementById('temaPlan').value; // Este es el valor que sirve como categoría
+            const lugar = document.getElementById('lugarPlan').value;
+            const hora = document.getElementById('horaPlan').value;
+            const costo = document.getElementById('costoPlan').value;
+
+            const nuevaTarjeta = document.createElement('div');
+            // AGREGAMOS "tarjeta-plan" Y EL ATRIBUTO "data-categoria" PARA QUE FUNCIONE EL FILTRO CON LAS NUEVAS
+            nuevaTarjeta.className = 'tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg animate-[pulse_1s_ease-in-out]';
+            nuevaTarjeta.setAttribute('data-categoria', tema);
+            
+            nuevaTarjeta.innerHTML = `
+                <div>
+                    <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">${tema}</span>
+                    <h3 class="text-2xl font-bold mb-4">${nombre}</h3>
+                    <div class="space-y-2 mb-6">
+                        <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> ${lugar}</p>
+                        <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> ${hora}</p>
+                        <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> $${costo} MXN</p>
+                    </div>
+                </div>
+                <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary mt-4">
+                    Completar Plan
+                </button>
+            `;
+
+            document.getElementById('contenedorPlanes').prepend(nuevaTarjeta);
+            
+            // Forzar que se muestren todos al agregar un plan nuevo para evitar que se esconda
+            mostrarTodos(); 
+            this.reset();
+            
+            // Llevar al usuario a ver su plan nuevo
+            document.getElementById('futuros').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
