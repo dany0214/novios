@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DuoPlans - Innovando sus Citas</title>
+    <meta name="theme-color" content="#222222">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
     <!-- Tailwind CSS por CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome para iconos -->
@@ -80,6 +84,7 @@
                     <li><a href="#futuros" class="hover:text-primary transition">Wishlist</a></li>
                     <li><a href="#invitaciones" class="hover:text-primary transition">Invitaciones</a></li>
                     <li><a href="#realizados" class="hover:text-primary transition">Historial</a></li>
+                    <li><button type="button" id="instalarApp" class="bg-primary text-light font-bold px-4 py-1 rounded-full hover:bg-light hover:text-dark transition"><i class="fa-solid fa-download mr-1"></i> Instalar app</button></li>
                 </ul>
             </nav>
         </div>
@@ -389,5 +394,6 @@
             document.getElementById('futuros').scrollIntoView({ behavior: 'smooth' });
         });
     </script>
+    <script src="pwa.js"></script>
 </body>
 </html>
