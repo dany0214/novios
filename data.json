@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nombre": "Taller de Talavera",
+    "categoria": "Creatividad",
+    "lugar": "Barrio del Artista",
+    "hora": "Sáb 10:00 AM",
+    "costo": "800"
+  },
+  {
+    "id": 2,
+    "nombre": "Escape Room de Terror",
+    "categoria": "Extrema",
+    "lugar": "Plaza de la Tecnología",
+    "hora": "Sáb 20:00 hrs",
+    "costo": "350"
+  }
+]

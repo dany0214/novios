@@ -83,7 +83,6 @@
                     <li><a href="#crear-plan" class="hover:text-primary transition">Crear Plan</a></li>
                     <li><a href="#futuros" class="hover:text-primary transition">Wishlist</a></li>
                     <li><a href="#invitaciones" class="hover:text-primary transition">Invitaciones</a></li>
-                    <li><a href="#realizados" class="hover:text-primary transition">Historial</a></li>
                     <li><button type="button" id="instalarApp" class="bg-primary text-light font-bold px-4 py-1 rounded-full hover:bg-light hover:text-dark transition"><i class="fa-solid fa-download mr-1"></i> Instalar app</button></li>
                 </ul>
             </nav>
@@ -131,7 +130,6 @@
                 <p class="text-dark font-medium mb-8 max-w-2xl">Da clic en una categoría para filtrar su Wishlist de planes.</p>
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <!-- Cada div ahora tiene un onclick para llamar a la función de filtrar -->
                     <div onclick="filtrarPlanes('Creatividad')" class="border-4 border-dark bg-dark text-light p-8 flex flex-col items-center justify-center text-center hover:bg-primary hover:border-primary transition-all cursor-pointer group shadow-[4px_4px_0px_0px_rgba(255,75,75,1)] hover:shadow-none hover:translate-y-1 hover:translate-x-1">
                         <i class="fa-solid fa-palette text-5xl mb-4 text-primary group-hover:text-light transition-colors"></i>
                         <h3 class="font-bold text-xl uppercase tracking-wider mb-2">Creatividad</h3>
@@ -196,75 +194,17 @@
             </div>
         </section>
 
-        <!-- SECCIÓN: WISHLIST (Con filtrado dinámico) -->
+        <!-- SECCIÓN: WISHLIST (Con cargado de API y filtrado dinámico) -->
         <section id="futuros" class="py-16 max-w-7xl mx-auto px-4 min-h-[500px]">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <!-- Título dinámico que cambiará con JS -->
                 <h2 id="tituloWishlist" class="text-3xl font-black text-dark border-l-8 border-primary pl-4 mb-4 md:mb-0">Nuestra Wishlist</h2>
-                <!-- Botón oculto por defecto para limpiar filtros -->
                 <button id="btnMostrarTodos" onclick="mostrarTodos()" class="btn-outline hidden text-sm py-2 px-4">
                     <i class="fa-solid fa-rotate-left mr-2"></i>Mostrar Todos
                 </button>
             </div>
 
             <div id="contenedorPlanes" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Tarjeta 1: Creatividad -->
-                <div class="tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg" data-categoria="Creatividad">
-                    <div>
-                        <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">Creatividad</span>
-                        <h3 class="text-2xl font-bold mb-4">Taller de Talavera</h3>
-                        <div class="space-y-2 mb-6">
-                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Barrio del Artista</p>
-                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> Sáb 10:00 AM</p>
-                            <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> $800 MXN</p>
-                        </div>
-                    </div>
-                    <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary">Completar Plan</button>
-                </div>
-
-                <!-- Tarjeta 2: Gastronomía -->
-                <div class="tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg" data-categoria="Gastronomía">
-                    <div>
-                        <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">Gastronomía</span>
-                        <h3 class="text-2xl font-bold mb-4">Tour de Antojitos</h3>
-                        <div class="space-y-2 mb-6">
-                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Mercado de Cholula</p>
-                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> Dom 2:00 PM</p>
-                            <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> $400 MXN</p>
-                        </div>
-                    </div>
-                    <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary">Completar Plan</button>
-                </div>
-
-                <!-- Tarjeta 3: Extrema -->
-                <div class="tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg" data-categoria="Extrema">
-                    <div>
-                        <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">Extrema</span>
-                        <h3 class="text-2xl font-bold mb-4">Salto en Paracaídas</h3>
-                        <div class="space-y-2 mb-6">
-                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Aeródromo de Atlixco</p>
-                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> Sáb 8:00 AM</p>
-                            <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> $3500 MXN</p>
-                        </div>
-                    </div>
-                    <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary">Completar Plan</button>
-                </div>
-
-                <!-- Tarjeta 4: Cultura -->
-                <div class="tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg" data-categoria="Cultura">
-                    <div>
-                        <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">Cultura</span>
-                        <h3 class="text-2xl font-bold mb-4">Noche de Museos</h3>
-                        <div class="space-y-2 mb-6">
-                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> Centro Histórico</p>
-                            <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> Vie 6:00 PM</p>
-                            <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> Gratis</p>
-                        </div>
-                    </div>
-                    <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary">Completar Plan</button>
-                </div>
-
+                <!-- Los planes se cargarán dinámicamente aquí desde el Backend -->
             </div>
         </section>
 
@@ -316,83 +256,104 @@
         <p class="text-xs opacity-70">© 2026 Todos los derechos reservados.</p>
     </footer>
 
-    <!-- LOGICA JAVASCRIPT: FILTRADO Y FORMULARIO -->
+    <!-- LÓGICA JAVASCRIPT: FETCH API Y FORMULARIO (Módulo Frontend) -->
     <script>
-        // FUNCIÓN 1: Filtrar planes por categoría
-        function filtrarPlanes(categoriaSelec) {
-            // Actualizar el título de la sección
-            document.getElementById('tituloWishlist').innerHTML = `Nuestra Wishlist <span class="text-primary text-xl md:text-2xl ml-2">/ ${categoriaSelec}</span>`;
-            // Mostrar botón para quitar filtros
-            document.getElementById('btnMostrarTodos').classList.remove('hidden');
+        document.addEventListener('DOMContentLoaded', cargarPlanes);
 
-            // Obtener todas las tarjetas (tanto las de ejemplo como las nuevas creadas)
-            const tarjetas = document.querySelectorAll('.tarjeta-plan');
-            let hayResultados = false;
+        // 1. OBTENER PLANES (GET) al cargar la página
+        async function cargarPlanes() {
+            try {
+                const response = await fetch('/api/planes');
+                const planes = await response.json();
+                
+                const contenedor = document.getElementById('contenedorPlanes');
+                contenedor.innerHTML = ''; // Limpiamos el contenedor
 
-            tarjetas.forEach(tarjeta => {
-                // Verificar qué categoría tiene la tarjeta (usando data-categoria)
-                if (tarjeta.getAttribute('data-categoria') === categoriaSelec) {
-                    tarjeta.style.display = 'flex'; // Mostrar si coincide
-                    hayResultados = true;
-                } else {
-                    tarjeta.style.display = 'none'; // Ocultar si no coincide
+                // Renderizamos cada plan que venga de la base de datos
+                planes.forEach(plan => {
+                    contenedor.appendChild(crearTarjetaHTML(plan));
+                });
+            } catch (error) {
+                console.error("Error al cargar los planes:", error);
+            }
+        }
+
+        // Función auxiliar para dibujar la tarjeta
+        function crearTarjetaHTML(plan) {
+            const div = document.createElement('div');
+            div.className = 'tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg';
+            div.setAttribute('data-categoria', plan.categoria);
+            div.innerHTML = `
+                <div>
+                    <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">${plan.categoria}</span>
+                    <h3 class="text-2xl font-bold mb-4">${plan.nombre}</h3>
+                    <div class="space-y-2 mb-6">
+                        <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> ${plan.lugar}</p>
+                        <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> ${plan.hora}</p>
+                        <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> $${plan.costo} MXN</p>
+                    </div>
+                </div>
+                <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary">Completar Plan</button>
+            `;
+            return div;
+        }
+
+        // 2. ENVIAR FORMULARIO (POST) para crear nuevo plan
+        document.getElementById('planForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Recolectar datos del formulario
+            const nuevoPlan = {
+                nombre: document.getElementById('nombrePlan').value,
+                categoria: document.getElementById('temaPlan').value,
+                lugar: document.getElementById('lugarPlan').value,
+                hora: document.getElementById('horaPlan').value,
+                costo: document.getElementById('costoPlan').value
+            };
+
+            try {
+                // Petición POST al backend
+                const response = await fetch('/api/planes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(nuevoPlan)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    
+                    // Agregamos la nueva tarjeta al inicio de la pantalla
+                    const contenedor = document.getElementById('contenedorPlanes');
+                    contenedor.prepend(crearTarjetaHTML(result.plan));
+                    
+                    // Limpiar formulario y enfocar en la sección
+                    this.reset();
+                    mostrarTodos();
+                    document.getElementById('futuros').scrollIntoView({ behavior: 'smooth' });
                 }
-            });
+            } catch (error) {
+                console.error("Error al guardar el plan:", error);
+            }
+        });
 
-            // Desplazar la pantalla automáticamente hacia la Wishlist
+        // 3. FUNCIONES DE FILTRADO (Manteniendo el diseño original)
+        function filtrarPlanes(categoriaSelec) {
+            document.getElementById('tituloWishlist').innerHTML = `Nuestra Wishlist <span class="text-primary text-xl md:text-2xl ml-2">/ ${categoriaSelec}</span>`;
+            document.getElementById('btnMostrarTodos').classList.remove('hidden');
+            
+            const tarjetas = document.querySelectorAll('.tarjeta-plan');
+            tarjetas.forEach(tarjeta => {
+                tarjeta.style.display = (tarjeta.getAttribute('data-categoria') === categoriaSelec) ? 'flex' : 'none';
+            });
             document.getElementById('futuros').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // FUNCIÓN 2: Quitar los filtros y mostrar todos
         function mostrarTodos() {
             document.getElementById('tituloWishlist').innerText = 'Nuestra Wishlist';
             document.getElementById('btnMostrarTodos').classList.add('hidden');
-
             const tarjetas = document.querySelectorAll('.tarjeta-plan');
-            tarjetas.forEach(tarjeta => {
-                tarjeta.style.display = 'flex'; // Mostrar todas
-            });
+            tarjetas.forEach(tarjeta => tarjeta.style.display = 'flex');
         }
-
-        // FUNCIÓN 3: Agregar nuevos planes desde el formulario
-        document.getElementById('planForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nombre = document.getElementById('nombrePlan').value;
-            const tema = document.getElementById('temaPlan').value; // Este es el valor que sirve como categoría
-            const lugar = document.getElementById('lugarPlan').value;
-            const hora = document.getElementById('horaPlan').value;
-            const costo = document.getElementById('costoPlan').value;
-
-            const nuevaTarjeta = document.createElement('div');
-            // AGREGAMOS "tarjeta-plan" Y EL ATRIBUTO "data-categoria" PARA QUE FUNCIONE EL FILTRO CON LAS NUEVAS
-            nuevaTarjeta.className = 'tarjeta-plan bg-dark text-light p-6 border-b-8 border-primary flex flex-col justify-between shadow-lg animate-[pulse_1s_ease-in-out]';
-            nuevaTarjeta.setAttribute('data-categoria', tema);
-            
-            nuevaTarjeta.innerHTML = `
-                <div>
-                    <span class="inline-block bg-primary text-light text-xs font-black px-2 py-1 uppercase mb-3">${tema}</span>
-                    <h3 class="text-2xl font-bold mb-4">${nombre}</h3>
-                    <div class="space-y-2 mb-6">
-                        <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-solid fa-location-dot text-primary mr-2"></i> ${lugar}</p>
-                        <p class="text-sm border-b border-gray-700 pb-1"><i class="fa-regular fa-clock text-primary mr-2"></i> ${hora}</p>
-                        <p class="text-sm font-bold"><i class="fa-solid fa-wallet text-primary mr-2"></i> $${costo} MXN</p>
-                    </div>
-                </div>
-                <button class="w-full btn-outline bg-light text-dark hover:bg-primary hover:text-light hover:border-primary mt-4">
-                    Completar Plan
-                </button>
-            `;
-
-            document.getElementById('contenedorPlanes').prepend(nuevaTarjeta);
-            
-            // Forzar que se muestren todos al agregar un plan nuevo para evitar que se esconda
-            mostrarTodos(); 
-            this.reset();
-            
-            // Llevar al usuario a ver su plan nuevo
-            document.getElementById('futuros').scrollIntoView({ behavior: 'smooth' });
-        });
     </script>
     <script src="pwa.js"></script>
 </body>
